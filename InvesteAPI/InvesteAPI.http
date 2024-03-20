@@ -1,0 +1,6 @@
+@InvesteAPI_HostAddress = http://localhost:5154
+
+GET {{InvesteAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
