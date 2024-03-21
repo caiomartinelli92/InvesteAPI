@@ -5,6 +5,25 @@ Para esta API as tecnologias usadas são o ASP.Net, Entity Framework, linguagem 
 Endpoints:
 
 Métodos GET
+
+investeapi/todosinvesimentos
+Retorna os 100 investimentos mais recentes realizados.
+
+investeapi/rendafixa
+Retorna os 100 investimentos de renda fixa mais recentes realizados.
+
+investeapi/rendavariavel
+Retorna os 100 investimentos de renda variável mais recentes realizados.
+
+investeapi/invesimento/id
+Retorna o investimento específico em detalhes.
+
+investeapi/taxaderentabilidade
+Retorna a taxa de rentabilidade dos investimentos.
+
+investeapi/regras
+Retorna as regras de investimentos
+
 Métodos POST
 Métodos PUT
 Métodos DELETE
