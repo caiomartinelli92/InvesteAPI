@@ -2,7 +2,7 @@
 O objetivo desta API é simular como um sistema simples de investimentos funciona. A ideia é aplicar os conhecimentos do curso de ASP.Net do prof. Macoratti.
 Para esta API as tecnologias usadas são o ASP.Net, Entity Framework, linguagem C# e banco de dados MySQL.
 
-## Endpoints:
+## Endpoints
 
 ### Métodos GET
 
@@ -24,6 +24,7 @@ Retorna a taxa de rentabilidade dos investimentos.
 #### investeapi/regras
 Retorna as regras de investimentos
 
+
 ### Métodos POST
 Todos os invesmentos tem rendimento de 15% ao ano.
 
@@ -42,9 +43,11 @@ Aporte mensal;
 Data Inicial;
 Ao cadastrar com sucesso, retorna os dados do investimento e o valor estimado de resgate ao final da vigência.
 
+
 ### Métodos PUT
 #### investeapi/editar
 Edita os dados de um investimento já feito. A data inicial é o único dado que não pode ser alterado.
+
 
 ### Métodos DELETE
 #### investeapi/resgatar
