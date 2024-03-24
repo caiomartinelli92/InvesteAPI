@@ -38,9 +38,10 @@ Ao cadastrar com sucesso, retorna os dados do investimento e o valor estimado de
 
 #### investeapi/criar/rendavariavel
 Cadastra um novo investimento de renda variável a partir dos seguintes dados:
-Investimento Inicial;
-Aporte mensal;
-Data Inicial;
+* Investimento Inicial;
+* Aporte mensal;
+* Data Inicial;
+* Tempo de vigência.
 Ao cadastrar com sucesso, retorna os dados do investimento e o valor estimado de resgate ao final da vigência.
 
 
