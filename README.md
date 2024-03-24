@@ -6,7 +6,7 @@ Para esta API as tecnologias usadas são o ASP.Net, Entity Framework, linguagem 
 
 ### Métodos GET
 
-#### investeapi/todosinvesimentos
+**investeapi/todosinvesimentos**
 Retorna os 100 investimentos mais recentes realizados.
 
 #### investeapi/rendafixa
