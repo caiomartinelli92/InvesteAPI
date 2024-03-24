@@ -30,18 +30,20 @@ Todos os invesmentos tem rendimento de 15% ao ano.
 
 #### investeapi/criar/rendafixa
 Cadastra um novo investimento de renda fixa a partir dos seguintes dados:
+* Tipo de investimento;
 * Investimento Inicial;
 * Aporte mensal;
 * Data Inicial;
-* Tempo de vigência.
+* Tempo de vigência(em meses).
 Ao cadastrar com sucesso, retorna os dados do investimento e o valor estimado de resgate ao final da vigência.
 
 #### investeapi/criar/rendavariavel
 Cadastra um novo investimento de renda variável a partir dos seguintes dados:
+* Tipo de investimento;
 * Investimento Inicial;
 * Aporte mensal;
 * Data Inicial;
-* Tempo de vigência.
+* Tempo de vigência(em meses).
 Ao cadastrar com sucesso, retorna os dados do investimento e o valor estimado de resgate ao final da vigência.
 
 
