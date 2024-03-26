@@ -11,7 +11,7 @@ namespace InvesteAPI.Models
         [Required]
         public string? tipo { get; set; }
 
-        [Precision(8,2)]
+        [Precision(8,2)] 
         public decimal aporteInicial { get; set; }
 
         [Precision(8, 2)]
@@ -37,7 +37,14 @@ namespace InvesteAPI.Models
             }
             else
             {
-                return (float)((aporteInicial + aporteMensal * Math.Pow((1 + juros), vigencia)));
+                var valorAtt = 0;
+                var valorPrxMes = 0;
+                for(int i = 0;i < vigencia; i++)
+                {
+                    valorPrxMes = (int)(valorAtt + juros * (valorAtt + aporteMensal) + aporteMensal);
+                }
+                valorFinal = (decimal)(aporteInicial + valorAtt);
+                return (float)valorFinal;
             }
         }
     }
