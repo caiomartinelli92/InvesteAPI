@@ -15,8 +15,12 @@ Retorna os 100 investimentos de renda fixa mais recentes realizados.
 #### investeapi/rendavariavel
 Retorna os 100 investimentos de renda variável mais recentes realizados.
 
-#### investeapi/invesimento/id
+#### investeapi/investimentosresgatados
+Retorna os 100 investimentos resgatados mais recentes, independente do tipo.
+
+#### investeapi/investimento/id
 Retorna o investimento específico em detalhes.
+
 
 #### investeapi/regras
 Retorna as regras de investimentos.
@@ -37,18 +41,18 @@ Ao cadastrar com sucesso, retorna os dados do investimento e o valor estimado de
 #### investeapi/criar/rendavariavel
 Cadastra um novo investimento de renda variável a partir dos seguintes dados:
 * Tipo de investimento;
-* Investimento Inicial;
+* Investimento Inicial ("F" para renda fixa e "V" para renda variável);
 * Aporte mensal;
 * Data Inicial;
-* Tempo de vigência(em meses).
-Ao cadastrar com sucesso, retorna os dados do investimento e o valor estimado de resgate ao final da vigência.
+* Tempo de vigência(em meses),
+* Data Final;
+* Resgatado.
+Ao cadastrar com sucesso, retorna os dados do investimento, o valor estimado de resgate ao final da vigência e data final estimada.
 
 
 ### Métodos PUT
 #### investeapi/editar
-Edita os dados de um investimento já feito. A data inicial é o único dado que não pode ser alterado.
+Edita os dados de um investimento já feito. A data inicial é o único dado que não pode ser alterado. Ao alterar o investimento, a data final, vigência e valor a ser resgatado são recalculados.
 
-
-### Métodos DELETE
 #### investeapi/resgatar
 Realiza o resgate do investimento e o remove da lista de investimentos. Caso o investimento tenha sido feito a menos de um mês da data atual, não poderá ser resgatado.
