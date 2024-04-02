@@ -28,24 +28,64 @@ namespace InvesteAPI.Models
         [Precision(8, 2)]
         public decimal valorFinal { get; set; }
 
-        public float CalculaEstimado(float aporteInicial, float aporteMensal, int vigencia, string tipo)
+        [DisplayFormat(DataFormatString ="dd/mm/yyy")]
+        public DateTime dataFinal { get; set; }
+
+        public bool Resgatado { get; set; }
+
+        public Investimento()
         {
-            var juros = 0.15 / 12;
-            if (tipo == "Renda Fixa")
+            Resgatado = false;
+        }
+
+        //funcao para calcular o valor final estimado
+        internal void CalculaEstimado(Investimento i)
+        {
+            if(i.aporteInicial == 0)
             {
-                return (float)((aporteInicial + (aporteMensal * vigencia)) * juros * vigencia);
+                i.aporteInicial = i.aporteMensal;
             }
-            else
+
+            decimal juros = (decimal)(0.15 / 12);
+
+            if (i.tipo == "F")
+            {
+                i.valorFinal = i.aporteInicial + (i.aporteMensal * i.tempoVigencia) * 1 + juros;
+            }
+
+            if (i.tipo == "V")
             {
                 var valorAtt = 0;
                 var valorPrxMes = 0;
-                for(int i = 0;i < vigencia; i++)
+                for (int j = 0; j < i.tempoVigencia; j++)
                 {
-                    valorPrxMes = (int)(valorAtt + juros * (valorAtt + aporteMensal) + aporteMensal);
+                    valorPrxMes = ((int)(valorAtt + juros * (valorAtt + i.aporteMensal) + i.aporteMensal));
                 }
-                valorFinal = (decimal)(aporteInicial + valorAtt);
-                return (float)valorFinal;
+                i.valorFinal = (i.aporteInicial + valorAtt);
             }
+        }
+
+        public void AlteraDataFinal(DateTime dataInicio, DateTime dataFinal, int vigencia)
+        {
+            dataFinal = dataInicio.AddMonths(vigencia);
+        }
+
+        public bool ValidacaoDeCampos (Investimento i)
+        {
+            if (i.dataInicial > i.dataFinal)
+            {
+                return false;
+            }
+
+            if (i.aporteMensal <= 0)
+            {
+                return false;
+            }
+            if (i.tipo != "F" && i.tipo != "V")
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
