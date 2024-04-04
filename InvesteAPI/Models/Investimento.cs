@@ -61,6 +61,7 @@ namespace InvesteAPI.Models
                 for (int j = 0; j < i.tempoVigencia; j++)
                 {
                     valorPrxMes = ((int)(valorAtt + juros * (valorAtt + i.aporteMensal) + i.aporteMensal));
+                    valorAtt = valorPrxMes;
                 }
                 return i.valorFinal = (i.aporteInicial + valorAtt);
             }
