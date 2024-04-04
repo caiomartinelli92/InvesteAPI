@@ -39,7 +39,7 @@ namespace InvesteAPI.Models
         }
 
         //funcao para calcular o valor final estimado
-        internal void CalculaEstimado(Investimento i)
+        internal decimal CalculaEstimado(Investimento i)
         {
             if(i.aporteInicial == 0)
             {
@@ -50,7 +50,8 @@ namespace InvesteAPI.Models
 
             if (i.tipo == "F")
             {
-                i.valorFinal = i.aporteInicial + (i.aporteMensal * i.tempoVigencia) * 1 + juros;
+                return i.valorFinal = i.aporteInicial + (i.aporteMensal * i.tempoVigencia) * 1 + juros;
+                 
             }
 
             if (i.tipo == "V")
@@ -61,13 +62,15 @@ namespace InvesteAPI.Models
                 {
                     valorPrxMes = ((int)(valorAtt + juros * (valorAtt + i.aporteMensal) + i.aporteMensal));
                 }
-                i.valorFinal = (i.aporteInicial + valorAtt);
+                return i.valorFinal = (i.aporteInicial + valorAtt);
             }
+
+            return 0;
         }
 
-        public void AlteraDataFinal(DateTime dataInicio, DateTime dataFinal, int vigencia)
+        public DateTime AlteraDataFinal(DateTime dataInicio, DateTime dataFinal, int vigencia)
         {
-            dataFinal = dataInicio.AddMonths(vigencia);
+            return dataFinal = dataInicio.AddMonths(vigencia);
         }
 
         public bool ValidacaoDeCampos (Investimento i)
@@ -82,6 +85,10 @@ namespace InvesteAPI.Models
                 return false;
             }
             if (i.tipo != "F" && i.tipo != "V")
+            {
+                return false;
+            }
+            if (i.tempoVigencia <= 0)
             {
                 return false;
             }

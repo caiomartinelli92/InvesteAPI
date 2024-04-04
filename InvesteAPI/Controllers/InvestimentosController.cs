@@ -12,6 +12,11 @@ namespace InvesteAPI.Controllers
     {
         private readonly AppDbContext _context;
 
+        public InvestimentosController(AppDbContext context)
+        {
+            _context = context;
+        }
+
         string msgNotFound = "Nenhum registro encontrado.";
 
         //método GET para retornar os 100 investimentos mais recentes
@@ -118,15 +123,16 @@ namespace InvesteAPI.Controllers
                 return BadRequest("Investimento inválido");
             }
 
+            //chamada da funcao de calculo de valor estimado de resgate
+            i.valorFinal = i.CalculaEstimado(i);
+            i.dataFinal = i.AlteraDataFinal(i.dataInicial, i.dataFinal, i.tempoVigencia);
+
             bool camposValidados = i.ValidacaoDeCampos(i);
             if(camposValidados == false)
             {
-                return BadRequest();
+                return BadRequest("Revise os dados informados.");
             }
             
-            //chamada da funcao de calculo de valor estimado de resgate
-            i.CalculaEstimado(i);
-            i.AlteraDataFinal(i.dataInicial, i.dataFinal, i.tempoVigencia);
 
             _context.Investimentos.Add(i);
             _context.SaveChanges();
