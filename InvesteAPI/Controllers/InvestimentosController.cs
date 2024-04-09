@@ -29,7 +29,8 @@ namespace InvesteAPI.Controllers
                     AsNoTracking().
                     OrderByDescending(i => i.investimentoId).
                     ToList();
-            if (investimentos is null)
+
+            if (investimentos.Count == 0 || investimentos is null)
             {
                 return NotFound(msgNotFound);
             }
@@ -46,7 +47,8 @@ namespace InvesteAPI.Controllers
                 OrderByDescending(i => i.investimentoId).
                 AsNoTracking().
                 ToList();
-            if(investimentosRF is null)
+
+            if(investimentosRF.Count == 0 || investimentosRF is null)
             {
                 return NotFound(msgNotFound);
             }
@@ -64,7 +66,8 @@ namespace InvesteAPI.Controllers
                 OrderByDescending(i => i.investimentoId).
                 AsNoTracking().
                 ToList();
-            if( investimentosRV is null)
+
+            if(investimentosRV.Count == 0 || investimentosRV is null)
             {
                 return NotFound(msgNotFound);
             }
@@ -82,7 +85,7 @@ namespace InvesteAPI.Controllers
                 AsNoTracking().
                 ToList();
 
-            if(investimentos is null)
+            if(investimentos.Count == 0 || investimentos is null)
             {
                 return NotFound(msgNotFound);
             }
@@ -91,7 +94,7 @@ namespace InvesteAPI.Controllers
         }
 
         //método GET para retornar um investimento através do id
-        [HttpGet("/investimento/{id:int}", Name ="ObterInvestimento")]
+        [HttpGet("{id:int}", Name ="ObterInvestimento")]
         public ActionResult<Investimento> GetInvestimento (int id)
         {
             var investimento = _context.Investimentos.FirstOrDefault(i => i.investimentoId == id);
@@ -137,7 +140,7 @@ namespace InvesteAPI.Controllers
             _context.Investimentos.Add(i);
             _context.SaveChanges();
 
-            return new CreatedAtRouteResult("ObterInvesimento",
+            return new CreatedAtRouteResult("ObterInvestimento",
                 new { id = i.investimentoId}, i);
         }
         
@@ -183,6 +186,9 @@ namespace InvesteAPI.Controllers
 
             i.CalculaEstimado(i);
             i.Resgatado = true;
+
+            _context.Investimentos.Entry(i).State = EntityState.Modified;
+            _context.SaveChanges();
 
             return Ok("Investimento resgatado com sucesso! O valor resgato foi de " + i.valorFinal);
         }
